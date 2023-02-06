@@ -48,6 +48,10 @@ app.listen(port, () => {
         messages: [{
             type: 'text',
             text: this.messageNotification
+        },
+        {
+            type: 'text',
+            text: 'You are great!!!'
         },]
     })
     request.post({
