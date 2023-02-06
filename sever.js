@@ -6,8 +6,6 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-
-
 app.get('/',(req,res)=>{
     res.json({
         message:"Hello Welcome My Web Service!!!"
@@ -30,14 +28,16 @@ app.listen(port, () => {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer {RjT8hCJ6B9Pkn+KN1bhLBUjlNJtGnNrtZ9nf7cJ9hQ7nUKAnKDcccSuHThjmP1os5nggaFzzRP30S7p2ECEt0ta6OOUfz6MFssCKfUPBEUGmmOmT6Cbg5zk694vyVM80R/gnE7O06wxzHiC4dYEsiwdB04t89/1O/w1cDnyilFU=}'
     }
-
     let body = JSON.stringify({
         replyToken: reply_token,
-        messages: [
+        messages: [{
+            type: 'text',
+            text: 'Hello'
+        },
         {
             type: 'text',
-            text: 'You are great!!!'
-        },]
+            text: 'How are you?'
+        }]
     })
     request.post({
         url: 'https://api.line.me/v2/bot/message/reply',
@@ -47,4 +47,3 @@ app.listen(port, () => {
         console.log('status = ' + res.statusCode);
     });
 }
-
