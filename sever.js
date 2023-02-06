@@ -45,10 +45,7 @@ app.listen(port, () => {
     });
     let body = JSON.stringify({
         replyToken: reply_token,
-        messages: [{
-            type: 'text',
-            text: this.messageNotification
-        },
+        messages: [
         {
             type: 'text',
             text: 'You are great!!!'
