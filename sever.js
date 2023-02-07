@@ -15,7 +15,7 @@ rule.hour = 2;
 rule.minute = 38;
 
 
-const job = schedule.scheduleJob(rule, function(){
+const job = schedule.scheduleJob('* * */3 * * *', function(){
     weather.showWeather(function(data){
 
     
