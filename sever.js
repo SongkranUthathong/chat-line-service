@@ -11,7 +11,8 @@ const weather = require('./module/weatherNoti');
 const rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(0, 6)];
 rule.hour = 2;
-rule.minute = 30;
+rule.minute = 33;
+rule.tz = "Asia/Bangkok";
 
 const job = schedule.scheduleJob(rule, function(){
     weather.showWeather(function(data){
