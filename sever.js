@@ -11,8 +11,8 @@ const weather = require('./module/weatherNoti');
 app.get('/',(req,res)=>{
     
         res.json({ 
-            message:data
-    })
+            message:"Hello Welcome To My site SNK Dev!!!"
+        })
     
 
 });
