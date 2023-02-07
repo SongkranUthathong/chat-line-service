@@ -1,6 +1,4 @@
-const schedule = require('node-schedule');
-const request = require('request')
-
+const request = require('../node_modules/request');
 
 function getDateTime(){
     const day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday ","Saturday"]
@@ -14,26 +12,33 @@ function getDateTime(){
     let m_name = month[d.getMonth()];
     let date = d.getDate();
     let year = d.getFullYear();
-    return d_name + " " + m_name + " " + date + " " + year +" " +hour+":" +minutes+ ":" +seconds;
+    return d_name + " " + m_name + " " + date + " " + year +" " +addPoint(hour)+":" +addPoint(minutes)+ ":" +addPoint(seconds);
+}
+function addPoint(num){
+    if(num.lenght < 2){
+        return "0"+num;
+    }else{
+        return num;
+    }
+
 }
 
-function OpenWeather(){
-    let textPush
-    request.get({
+function OpenWeather(cbfnc){
+    var messageNotification;
+     request.get({
         url: 'https://api.openweathermap.org/data/2.5/weather?lat=13.71175516&lon=100.59223652&appid=63f338f24c40bb032d4faa52470c5b6c',
     }, (err, res, body) => {
         var weather = JSON.parse(body);
-        textPush = "สวัสดีตอนเช้าครับ\n"+
+        messageNotification = "สวัสดีตอนเช้าครับ\n"+
                    "ตอนนี้เวลา : "+getDateTime() +"\n"+
                     "สภาพอากาศ : "+weather.weather[0].description + " ปริมาณเมฆ : "+weather.clouds.all+ " %\n"+
                     "อุณหภูมิตอนนี้ : "+(weather.main.temp-273.15).toFixed(1)+ " C" +" | อุณหภูมิต่ำสุด : "+(weather.main.temp_min-273.15).toFixed(1)+ " C" +" | อุณหภูมิสูงสุด : "+(weather.main.temp_max-273.15).toFixed(1)+ " C" + "\n"+
                     "ความชื้น : " + weather.main.humidity+ " %" +" | ความกดอากาศ : "+weather.main.pressure +" hPa" +"\n"+
                     "ความเร็วลม : " + weather.wind.speed + "m/s , "+ "ทิศทางลม : "+ weather.wind.deg + " Degree\n"+
                     "API:OpenWeather";
+                    cbfnc(messageNotification);
     });
-    return textPush;
 }
 
-module.exports.WeatherCurrent = OpenWeather();
-module.exports.getTime = getDateTime();
-
+exports.getTime= getDateTime;
+exports.showWeather= OpenWeather;
