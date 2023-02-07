@@ -9,10 +9,11 @@ app.use(bodyParser.json())
 const weather = require('./module/weatherNoti');
 
 const rule = new schedule.RecurrenceRule();
+rule.tz = "Asia/Bangkok";
 rule.dayOfWeek = [0, new schedule.Range(0, 6)];
 rule.hour = 2;
-rule.minute = 33;
-rule.tz = "Asia/Bangkok";
+rule.minute = 38;
+
 
 const job = schedule.scheduleJob(rule, function(){
     weather.showWeather(function(data){
