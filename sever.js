@@ -10,10 +10,8 @@ const weather = require('./module/weatherNoti');
 
 app.get('/',(req,res)=>{
     
-    weather.showWeather(function(data){
         res.json({ 
             message:data
-        })
     })
     
 
