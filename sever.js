@@ -7,7 +7,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const weather = require('./module/weatherNoti');
-
 app.get('/',(req,res)=>{
     
         res.json({ 
@@ -39,10 +38,6 @@ app.listen(port, () => {
     let body = JSON.stringify({
         replyToken: reply_token,
         messages: [
-            {
-                "type":"text",
-                "text":"Hello, user"
-            },
             {
                 "type":"text",
                 "text":data
