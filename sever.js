@@ -45,9 +45,13 @@ app.listen(port, () => {
     let body = JSON.stringify({
         replyToken: reply_token,
         messages: [{
-            type: 'text',
-            text: message
-        }]
+            "type": 'text',
+            "text": 'Hello'
+        },{
+            "type": 'text',
+            "text": 'How are you?'
+        },
+    ]
     })
     request.post({
         url: 'https://api.line.me/v2/bot/message/reply',
