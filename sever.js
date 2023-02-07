@@ -42,13 +42,15 @@ app.listen(port, () => {
     "API:OpenWeather"
     let body = JSON.stringify({
         replyToken: reply_token,
-        messages: [{
-            "type": 'text',
-            "text": 'Hello'
-        },{
-            "type": 'text',
-            "text": 'How are you?'
-        },
+        messages: [
+            {
+                "type":"text",
+                "text":"Hello, user"
+            },
+            {
+                "type":"text",
+                "text":message
+            }
     ]
     })
     request.post({
